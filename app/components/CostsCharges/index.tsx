@@ -12,7 +12,7 @@ export function CostsCharges({ ongoingCharge, currency }: Props) {
 
   return (
     <>
-      <Typography variant="h4">Ongoing charge</Typography>
+      <Typography variant="h3">Ongoing charge</Typography>
       <Typography variant="body1">{formattedCurrency}</Typography>
     </>
   );

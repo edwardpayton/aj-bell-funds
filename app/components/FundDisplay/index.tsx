@@ -11,6 +11,7 @@ import { AssetAllocationRating } from '../AssetAllocationRating';
 import { CostsCharges } from '../CostsCharges';
 import { Documents } from '../Documents';
 import { FundHoldings } from '../FundHoldings';
+import styles from './styles.module.css';
 
 export type Props = {
   data: FundData;
@@ -74,8 +75,9 @@ export function FundDisplay({ data, isLoading, error }: Props) {
               id={`panel-${i}`}
               hidden={activeTab !== i}
               aria-label={`${label} tab`}
+              className={styles.panel}
             >
-              {renderTabContent(i)}
+              <Box className={styles['panel-inner']}>{renderTabContent(i)}</Box>
             </Box>
           ))}
         </>

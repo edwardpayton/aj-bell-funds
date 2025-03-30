@@ -10,15 +10,25 @@ export type Props = {
 
 export function Documents({ documents }: Props) {
   return (
-    <List>
-      {documents.map(({ id, type, url }) => (
-        <ListItem key={id} className={styles['list-item']}>
-          <Typography variant="h6">{type}</Typography>
-          <Button variant="outlined" href={url} target="_blank" download className={styles.button}>
-            Download document
-          </Button>
-        </ListItem>
-      ))}
-    </List>
+    <>
+      <Typography variant="h3">Documents</Typography>
+
+      <List>
+        {documents.map(({ id, type, url }) => (
+          <ListItem key={id} className={styles['list-item']}>
+            <Typography variant="h6">{type}</Typography>
+            <Button
+              variant="outlined"
+              href={url}
+              target="_blank"
+              download
+              className={styles.button}
+            >
+              Download document
+            </Button>
+          </ListItem>
+        ))}
+      </List>
+    </>
   );
 }

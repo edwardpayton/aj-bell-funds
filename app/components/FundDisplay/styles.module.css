@@ -1,0 +1,10 @@
+.panel {
+  padding-top: 1rem;
+}
+
+.panel-inner {
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+  padding-inline: 1rem;
+}

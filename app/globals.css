@@ -3,6 +3,7 @@
   --colors-gray: #8a8a8a;
   --colors-dark: #171717;
   --padding: 1rem;
+  --rating-text-align: left;
 }
 
 html,
@@ -38,6 +39,7 @@ body {
 @media (min-width: 50rem) {
   :root {
     --padding: 2rem 3rem;
+    --rating-text-align: right;
   }
 }
 
