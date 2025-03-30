@@ -1,3 +1,5 @@
+export type FundType = 'Growth' | 'Responsible';
+
 export type FundId = string;
 
 export type FundData = {
@@ -22,4 +24,9 @@ export type FundData = {
     asset: Record<string, string>[];
     top10Holdings: unknown[];
   };
+};
+
+export type GrowthFundOption = {
+  name: string;
+  id: FundId;
 };

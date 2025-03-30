@@ -1,3 +1,5 @@
+import { GrowthFundOption } from '@/types';
+
 export const BASE_URL = 'https://cdn.core3-dev.ajbbuild.uk/interview/';
 
 export const FUNDS = {
@@ -16,3 +18,10 @@ export const FUND_TYPES = [...Object.keys(FUNDS)];
 export const GROWTH_FUND_IDS = Object.values(FUNDS.Growth);
 
 export const ALL_FUND_IDS = [...GROWTH_FUND_IDS, FUNDS.Responsible.Default];
+
+export const GROWTH_FUND_OPTIONS: GrowthFundOption[] = Object.entries(FUNDS.Growth).map(
+  ([name, id]) => ({
+    name,
+    id,
+  }),
+);
