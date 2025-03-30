@@ -1,18 +1,13 @@
 'use client';
 
-import Alert from '@mui/material/Alert';
-import Box from '@mui/material/Box';
-import CircularProgress from '@mui/material/CircularProgress';
-import ToggleButton from '@mui/material/ToggleButton';
-import ToggleButtonGroup from '@mui/material/ToggleButtonGroup';
 import { useQuery } from '@tanstack/react-query';
 import { type MouseEvent, useState } from 'react';
 
-import { FUND_TYPES, GROWTH_FUND_OPTIONS } from '@/constants';
+import { FundDisplay } from '@/components/FundDisplay';
+import { FundSelector } from '@/components/FundSelector';
+import { FUNDS } from '@/constants';
 import { getFundData } from '@/queries';
-import type { FundId, FundType } from '@/types';
-
-import { PortfolioAssetChart } from '../PortfolioAssetChart';
+import type { FundData, FundId, FundType } from '@/types';
 
 export function FundManager() {
   const [fundType, setFundType] = useState<FundType | null>(null);
@@ -24,10 +19,11 @@ export function FundManager() {
     enabled: !!growthFundId,
   });
 
-  const { portfolio } = data ?? {};
-
   const handleChangeFundType = (_: MouseEvent<HTMLElement>, value: FundType | null) => {
-    setFundType(value ?? null);
+    if (!value || value === fundType) return;
+
+    setFundType(value);
+    setGrowthFundId(value === 'Responsible' ? FUNDS.Responsible.Default : null);
   };
 
   const handleChangeGrowthFundType = (_: MouseEvent<HTMLElement>, value: FundId | null) => {
@@ -36,49 +32,14 @@ export function FundManager() {
 
   return (
     <>
-      <ToggleButtonGroup
-        color="primary"
-        value={fundType}
-        exclusive
-        onChange={handleChangeFundType}
-        aria-label="select fund type"
-      >
-        {FUND_TYPES.map((option) => (
-          <ToggleButton key={option} value={option}>
-            {option}
-          </ToggleButton>
-        ))}
-      </ToggleButtonGroup>
+      <FundSelector
+        fundType={fundType}
+        growthFundId={growthFundId}
+        onChangeFundTypeAction={handleChangeFundType}
+        onChangeGrowthFundAction={handleChangeGrowthFundType}
+      />
 
-      {fundType === 'Growth' && (
-        <ToggleButtonGroup
-          color="primary"
-          value={growthFundId}
-          exclusive
-          onChange={handleChangeGrowthFundType}
-          aria-label="select growth fund"
-        >
-          {GROWTH_FUND_OPTIONS.map(({ name, id }) => (
-            <ToggleButton key={name} value={id}>
-              {name}
-            </ToggleButton>
-          ))}
-        </ToggleButtonGroup>
-      )}
-
-      {isLoading && (
-        <Box display="flex" justifyContent="center">
-          <CircularProgress />
-        </Box>
-      )}
-
-      {error && (
-        <Box>
-          <Alert severity="error">Error loading fund data: {error?.message}</Alert>
-        </Box>
-      )}
-
-      {data && <PortfolioAssetChart data={portfolio?.asset} />}
+      <FundDisplay isLoading={isLoading} error={error} data={data as FundData} />
     </>
   );
 }
