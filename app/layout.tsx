@@ -5,6 +5,7 @@ import { Source_Sans_3 } from 'next/font/google';
 import type { ReactNode } from 'react';
 
 import './globals.css';
+import { QueryProvider } from './providers/QueryProvider';
 import theme from './theme';
 
 const sourceSans3 = Source_Sans_3({
@@ -26,7 +27,9 @@ export default function RootLayout({ children }: Props) {
     <html lang="en">
       <AppRouterCacheProvider>
         <ThemeProvider theme={theme}>
-          <body className={sourceSans3.variable}>{children}</body>
+          <QueryProvider>
+            <body className={sourceSans3.variable}>{children}</body>
+          </QueryProvider>
         </ThemeProvider>
       </AppRouterCacheProvider>
     </html>
