@@ -1,7 +1,7 @@
 import { type NextRequest } from 'next/server';
 
 import { BASE_URL } from '@/constants';
-import { FundId } from '@/types';
+import type { FundId } from '@/types';
 
 type Params = {
   params: {

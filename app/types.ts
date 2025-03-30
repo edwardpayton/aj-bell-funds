@@ -1,3 +1,5 @@
+import type { PieValueType } from '@mui/x-charts';
+
 export type FundType = 'Growth' | 'Responsible';
 
 export type FundId = string;
@@ -21,7 +23,7 @@ export type FundData = {
   };
   documents: unknown[];
   portfolio: {
-    asset: Record<string, string>[];
+    asset: PieValueType[];
     top10Holdings: unknown[];
   };
 };

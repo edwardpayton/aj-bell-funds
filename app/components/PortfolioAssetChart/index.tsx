@@ -1,8 +1,8 @@
-import { type PieSeriesType } from '@mui/x-charts';
+import { type PieValueType } from '@mui/x-charts';
 import { PieChart } from '@mui/x-charts/PieChart';
 
 export type Props = {
-  data: PieSeriesType['data'];
+  data: PieValueType[];
 };
 
 export function PortfolioAssetChart({ data }: Props) {

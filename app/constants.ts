@@ -1,4 +1,4 @@
-import { GrowthFundOption } from '@/types';
+import type { GrowthFundOption } from '@/types';
 
 export const BASE_URL = 'https://cdn.core3-dev.ajbbuild.uk/interview/';
 
