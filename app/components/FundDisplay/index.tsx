@@ -61,7 +61,13 @@ export function FundDisplay({ data, isLoading, error }: Props) {
 
       {hasEssentialData && (
         <>
-          <Tabs value={activeTab} onChange={handleChange} aria-label="fund tabs">
+          <Tabs
+            value={activeTab}
+            onChange={handleChange}
+            aria-label="fund tabs"
+            variant="scrollable"
+            scrollButtons="auto"
+          >
             {FUND_DISPLAY_TABS.map(({ label }, i) => (
               <Tab key={`tab-${i}`} label={label} id={`tab-${i}`} aria-controls={`panel-${i}`} />
             ))}

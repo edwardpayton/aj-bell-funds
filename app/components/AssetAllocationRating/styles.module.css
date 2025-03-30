@@ -1,4 +1,4 @@
 .feature {
   margin-bottom: 1rem;
-  text-align: var(--rating-text-align);
+  text-align: var(--feature-text-align);
 }

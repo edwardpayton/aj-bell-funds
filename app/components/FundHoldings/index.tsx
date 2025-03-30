@@ -41,7 +41,7 @@ export function FundHoldings({ top10Holdings }: Props) {
             {top10Holdings.map(({ name, weighting }) => (
               <TableRow key={name}>
                 <TableCell scope="row">{name}</TableCell>
-                <TableCell align="right">{weighting}</TableCell>
+                <TableCell align="right">{weighting.toFixed(2)}%</TableCell>
               </TableRow>
             ))}
           </TableBody>

@@ -3,7 +3,8 @@
   --colors-gray: #8a8a8a;
   --colors-dark: #171717;
   --padding: 1rem;
-  --rating-text-align: left;
+  --feature-text-align: left;
+  --panel-inner-gap: 1rem;
 }
 
 html,
@@ -31,18 +32,14 @@ body {
 /* sm - 500px */
 @media (min-width: 31.25rem) {
   :root {
-    --padding: 1.5rem;
+    --padding: 1rem 1.5rem 1.5rem;
+    --panel-inner-gap: 2rem;
   }
 }
 
 /* md - 800px */
 @media (min-width: 50rem) {
   :root {
-    --padding: 2rem 3rem;
-    --rating-text-align: right;
+    --feature-text-align: right;
   }
-}
-
-/* lg - 1200px */
-@media (min-width: 75rem) {
 }

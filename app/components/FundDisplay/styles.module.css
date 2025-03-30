@@ -5,6 +5,6 @@
 .panel-inner {
   display: flex;
   flex-direction: column;
-  gap: 1rem;
-  padding-inline: 1rem;
+  gap: var(--panel-inner-gap);
+  padding-inline: 0.5rem;
 }

@@ -13,7 +13,7 @@ export function Documents({ documents }: Props) {
     <>
       <Typography variant="h3">Documents</Typography>
 
-      <List>
+      <List className={styles.list}>
         {documents.map(({ id, type, url }) => (
           <ListItem key={id} className={styles['list-item']}>
             <Typography variant="h6">{type}</Typography>

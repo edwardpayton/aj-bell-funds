@@ -1,8 +1,14 @@
+.list.list {
+  /* double specifity to override mui root styles */
+  margin-top: -1rem;
+}
+
 .list-item.list-item {
   /* double specifity to override mui root styles */
   display: flex;
   justify-content: space-between;
   max-width: 25rem;
+  padding-inline: 0;
 }
 
 .button {
