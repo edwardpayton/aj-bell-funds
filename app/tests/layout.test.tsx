@@ -1,6 +1,7 @@
 import { AppRouterCacheProvider } from '@mui/material-nextjs/v15-appRouter';
 import { ThemeProvider } from '@mui/material/styles';
 import { render } from '@testing-library/react';
+import { NuqsAdapter } from 'nuqs/adapters/next';
 
 import RootLayout, { type Props } from '@/layout';
 import { QueryProvider } from '@/providers/QueryProvider';
@@ -32,6 +33,10 @@ jest.mock('../providers/QueryProvider', () => ({
   QueryProvider: jest.fn(),
 }));
 
+jest.mock('nuqs/adapters/next/app', () => ({
+  NuqsAdapter: jest.fn(),
+}));
+
 const mockChildren = <p>test children</p>;
 const mockWrapper = ({ children }: Props) => <div>{children}</div>;
 
@@ -39,6 +44,7 @@ const setup = () => {
   (AppRouterCacheProvider as jest.Mock).mockImplementation(mockWrapper);
   (ThemeProvider as jest.Mock).mockImplementation(mockWrapper);
   (QueryProvider as jest.Mock).mockImplementation(mockWrapper);
+  (NuqsAdapter as jest.Mock).mockImplementation(mockWrapper);
 
   return render(<RootLayout>{mockChildren}</RootLayout>);
 };

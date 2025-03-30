@@ -7,12 +7,8 @@ const setup = (props?: Props) => {
 };
 
 describe('RiskMeter', () => {
-  it('renders the risk rating and text', () => {
+  it('renders the risk rating labels', () => {
     setup();
-
-    expect(
-      screen.getByRole('heading', { level: 6, name: 'Risk Rating: 5/10' }),
-    ).toBeInTheDocument();
 
     expect(screen.getByText('Lower risk')).toBeInTheDocument();
     expect(screen.getByText('Higher risk')).toBeInTheDocument();
@@ -21,8 +17,7 @@ describe('RiskMeter', () => {
   it('does not render if there is no value', () => {
     setup({ value: null as unknown as number });
 
-    expect(
-      screen.queryByRole('heading', { level: 6, name: 'Risk Rating: 5/10' }),
-    ).not.toBeInTheDocument();
+    expect(screen.queryByText('Lower risk')).not.toBeInTheDocument();
+    expect(screen.queryByText('Higher risk')).not.toBeInTheDocument();
   });
 });
