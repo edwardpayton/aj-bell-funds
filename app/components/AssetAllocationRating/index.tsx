@@ -1,19 +1,19 @@
 import { Rating, Typography } from '@mui/material';
+import { PieValueType } from '@mui/x-charts';
 
 import type { FundData } from '@/types';
 
 import { PortfolioAssetChart } from '../PortfolioAssetChart';
 
-export type Props = Pick<FundData, 'quote' | 'profile' | 'ratings' | 'portfolio'>;
+export type Props = Pick<FundData, 'quote' | 'profile' | 'ratings'> & {
+  asset: PieValueType[];
+};
 
-export function AssetAllocationRating({ quote, profile, ratings, portfolio }: Props) {
+export function AssetAllocationRating({ quote, profile, ratings, asset }: Props) {
   const { name } = quote;
-
-  const { asset } = portfolio;
-
   const { analystRating, analystRatingLabel } = ratings;
 
-  console.log({ profile });
+  console.log({ profile }); // TODO
 
   return (
     <>

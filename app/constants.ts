@@ -28,19 +28,24 @@ export const GROWTH_FUND_OPTIONS: ListOption[] = Object.entries(FUNDS.Growth).ma
 
 export const FUND_DISPLAY_TABS: ListOption[] = [
   {
-    id: 'tab1',
     label: 'Asset allocation and rating',
   },
   {
-    id: 'tab2',
     label: 'Fund holdings',
   },
   {
-    id: 'tab3',
     label: 'Costs & charges',
   },
   {
-    id: 'tab4',
     label: 'Documents',
+  },
+];
+
+export const FUND_HOLDINGS_TABS: ListOption[] = [
+  {
+    label: 'Holding',
+  },
+  {
+    label: 'Weight',
   },
 ];

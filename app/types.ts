@@ -4,6 +4,11 @@ export type FundType = 'Growth' | 'Responsible';
 
 export type FundId = string;
 
+export type Top10Holding = {
+  name: string;
+  weighting: number;
+};
+
 export type FundData = {
   quote: {
     name: string;
@@ -24,11 +29,11 @@ export type FundData = {
   documents: unknown[];
   portfolio: {
     asset: PieValueType[];
-    top10Holdings: unknown[];
+    top10Holdings: Top10Holding[];
   };
 };
 
 export type ListOption = {
-  id: FundId;
   label: string;
+  id?: FundId;
 };

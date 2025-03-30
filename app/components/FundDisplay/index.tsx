@@ -1,12 +1,13 @@
 'use client';
 
-import { Alert, Box, CircularProgress, Paper, Tab, Tabs, Typography } from '@mui/material';
+import { Alert, Box, CircularProgress, Paper, Tab, Tabs } from '@mui/material';
 import { type SyntheticEvent, useState } from 'react';
 
 import { FUND_DISPLAY_TABS } from '@/constants';
 import type { FundData } from '@/types';
 
 import { AssetAllocationRating } from '../AssetAllocationRating';
+import { FundHoldings } from '../FundHoldings';
 
 export type Props = {
   data: FundData;
@@ -19,21 +20,18 @@ export function FundDisplay({ data, isLoading, error }: Props) {
 
   const { quote, profile, ratings, documents, portfolio } = data ?? {};
 
-  const hasEssentialData = data && !!Object.keys(quote).length;
+  const { asset, top10Holdings } = portfolio ?? {};
+
+  const hasEssentialData = data && !!Object.keys(quote).length && !!Object.keys(asset).length;
 
   const renderTabContent = (index: number) => {
     switch (index) {
       case 0:
         return (
-          <AssetAllocationRating
-            quote={quote}
-            profile={profile}
-            ratings={ratings}
-            portfolio={portfolio}
-          />
+          <AssetAllocationRating quote={quote} profile={profile} ratings={ratings} asset={asset} />
         );
       case 1:
-        return <p>2</p>;
+        return <FundHoldings top10Holdings={top10Holdings} />;
       case 2:
         return <p>3</p>;
       case 3:
@@ -60,17 +58,17 @@ export function FundDisplay({ data, isLoading, error }: Props) {
       {hasEssentialData && (
         <>
           <Tabs value={activeTab} onChange={handleChange} aria-label="fund tabs">
-            {FUND_DISPLAY_TABS.map(({ label, id }) => (
-              <Tab key={`tab-${id}`} label={label} id={`tab-${id}`} aria-controls={`panel-${id}`} />
+            {FUND_DISPLAY_TABS.map(({ label }, i) => (
+              <Tab key={`tab-${i}`} label={label} id={`tab-${i}`} aria-controls={`panel-${i}`} />
             ))}
           </Tabs>
 
-          {FUND_DISPLAY_TABS.map(({ label, id }, i) => (
+          {FUND_DISPLAY_TABS.map(({ label }, i) => (
             <Box
-              key={`panel-${id}`}
+              key={`panel-${i}`}
               component="section"
               role="tabpanel"
-              id={`panel-${id}`}
+              id={`panel-${i}`}
               hidden={activeTab !== i}
               aria-label={`${label} tab`}
             >
@@ -79,7 +77,6 @@ export function FundDisplay({ data, isLoading, error }: Props) {
           ))}
         </>
       )}
-      <Box>{data && <Typography variant="body1">{JSON.stringify(data, null, 2)}</Typography>}</Box>
     </Paper>
   );
 }
