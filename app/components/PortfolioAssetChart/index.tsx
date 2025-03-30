@@ -14,7 +14,7 @@ export function PortfolioAssetChart({ data }: Props) {
         {
           data: data.map(({ label, value }) => ({
             value,
-            label: `${label}: ${value.toFixed(2)}`,
+            label: `${label}: ${value.toFixed(2)}%`,
           })),
         },
       ]}
