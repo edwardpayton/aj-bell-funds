@@ -41,7 +41,7 @@ export function FundSelector({
     >
       <Box className={styles.box}>
         <Typography variant="h2" id={headingId}>
-          1. Tell us why you’re investing
+          1. Tell us why you're investing
         </Typography>
 
         <FormControl component="fieldset">
@@ -83,11 +83,14 @@ export function FundSelector({
               onChange={onChangeGrowthFundAction}
               aria-labelledby={growthTypeId}
             >
-              {GROWTH_FUND_OPTIONS.map(({ label, id }) => (
-                <ToggleButton key={label} value={id}>
-                  {label}
-                </ToggleButton>
-              ))}
+              {GROWTH_FUND_OPTIONS.map(
+                ({ label, id }) =>
+                  id && (
+                    <ToggleButton key={label} value={id}>
+                      {label}
+                    </ToggleButton>
+                  ),
+              )}
             </ToggleButtonGroup>
           </FormControl>
         </Box>
