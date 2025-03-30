@@ -7,6 +7,8 @@ import { FUND_DISPLAY_TABS } from '@/constants';
 import type { FundData } from '@/types';
 
 import { AssetAllocationRating } from '../AssetAllocationRating';
+import { CostsCharges } from '../CostsCharges';
+import { Documents } from '../Documents';
 import { FundHoldings } from '../FundHoldings';
 
 export type Props = {
@@ -21,23 +23,23 @@ export function FundDisplay({ data, isLoading, error }: Props) {
   const { quote, profile, ratings, documents, portfolio } = data ?? {};
 
   const { asset, top10Holdings } = portfolio ?? {};
+  const { ongoingCharge, currency } = quote ?? {};
 
   const hasEssentialData = data && !!Object.keys(quote).length && !!Object.keys(asset).length;
 
   const renderTabContent = (index: number) => {
     switch (index) {
+      case 3:
+        return <Documents documents={documents} />;
+      case 2:
+        return <CostsCharges ongoingCharge={ongoingCharge} currency={currency} />;
+      case 1:
+        return <FundHoldings top10Holdings={top10Holdings} />;
       case 0:
+      default:
         return (
           <AssetAllocationRating quote={quote} profile={profile} ratings={ratings} asset={asset} />
         );
-      case 1:
-        return <FundHoldings top10Holdings={top10Holdings} />;
-      case 2:
-        return <p>3</p>;
-      case 3:
-        return <p>4</p>;
-      default:
-        return null;
     }
   };
 

@@ -9,6 +9,12 @@ export type Top10Holding = {
   weighting: number;
 };
 
+export type Documents = {
+  id: string;
+  type: string;
+  url: string;
+};
+
 export type FundData = {
   quote: {
     name: string;
@@ -26,7 +32,7 @@ export type FundData = {
     SRRI: number;
     analystRatingLabel: string;
   };
-  documents: unknown[];
+  documents: Documents[];
   portfolio: {
     asset: PieValueType[];
     top10Holdings: Top10Holding[];

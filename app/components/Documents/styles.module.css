@@ -1,0 +1,10 @@
+.list-item.list-item {
+  /* double specifity to override mui root styles */
+  display: flex;
+  justify-content: space-between;
+  max-width: 25rem;
+}
+
+.button {
+  text-decoration: none;
+}
