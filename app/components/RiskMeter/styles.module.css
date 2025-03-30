@@ -1,0 +1,17 @@
+.headings {
+  display: flex;
+  justify-content: space-between;
+}
+
+.ratings-bar {
+  display: flex;
+  gap: 0.5rem;
+  height: 2.5rem;
+}
+
+.rating {
+  flex: 1;
+  border-color: var(--colors-dark);
+  border-style: solid;
+  border-radius: 0.125rem;
+}

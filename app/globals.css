@@ -1,7 +1,7 @@
 :root {
   --colors-white: #ffffff;
   --colors-gray: #8a8a8a;
-  --text-color: #171717;
+  --colors-dark: #171717;
   --padding: 1rem;
 }
 
@@ -12,7 +12,7 @@ body {
 }
 
 body {
-  color: var(--text-color);
+  color: var(--colors-dark);
   background-color: var(--colors-gray);
   font-family: var(--font-source-sans-3);
 }
