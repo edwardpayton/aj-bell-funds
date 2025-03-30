@@ -2,6 +2,7 @@ import { AppRouterCacheProvider } from '@mui/material-nextjs/v15-appRouter';
 import { ThemeProvider } from '@mui/material/styles';
 import type { Metadata } from 'next';
 import { Source_Sans_3 } from 'next/font/google';
+import { NuqsAdapter } from 'nuqs/adapters/next/app';
 import type { ReactNode } from 'react';
 
 import './globals.css';
@@ -27,9 +28,11 @@ export default function RootLayout({ children }: Props) {
     <html lang="en">
       <AppRouterCacheProvider>
         <ThemeProvider theme={theme}>
-          <QueryProvider>
-            <body className={sourceSans3.variable}>{children}</body>
-          </QueryProvider>
+          <NuqsAdapter>
+            <QueryProvider>
+              <body className={sourceSans3.variable}>{children}</body>
+            </QueryProvider>
+          </NuqsAdapter>
         </ThemeProvider>
       </AppRouterCacheProvider>
     </html>

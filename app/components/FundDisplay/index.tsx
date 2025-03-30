@@ -1,7 +1,8 @@
 'use client';
 
 import { Alert, Box, CircularProgress, Paper, Tab, Tabs } from '@mui/material';
-import { type SyntheticEvent, useState } from 'react';
+import { parseAsInteger, useQueryState } from 'nuqs';
+import { type SyntheticEvent } from 'react';
 
 import { FUND_DISPLAY_TABS } from '@/constants';
 import type { FundData } from '@/types';
@@ -18,7 +19,7 @@ export type Props = {
 };
 
 export function FundDisplay({ data, isLoading, error }: Props) {
-  const [activeTab, setActiveTab] = useState<number>(0);
+  const [activeTab, setActiveTab] = useQueryState('tab-number', parseAsInteger.withDefault(0));
 
   const { quote, profile, ratings, documents, portfolio } = data ?? {};
 
