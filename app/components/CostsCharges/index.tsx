@@ -1,14 +1,12 @@
 import { Typography } from '@mui/material';
 
 import { FundData } from '@/types';
+import { formatCurrency } from '@/utils/format-currency';
 
-export type Props = Pick<FundData['quote'], 'ongoingCharge' | 'currency'>;
+export type Props = Pick<FundData['quote'], 'ongoingCharge'>;
 
-export function CostsCharges({ ongoingCharge, currency }: Props) {
-  const formattedCurrency = new Intl.NumberFormat('en-GB', {
-    style: 'currency',
-    currency,
-  }).format(ongoingCharge);
+export function CostsCharges({ ongoingCharge }: Props) {
+  const formattedCurrency = formatCurrency(ongoingCharge, 'GBP');
 
   return (
     <>

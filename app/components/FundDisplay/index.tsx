@@ -25,7 +25,7 @@ export function FundDisplay({ data, isLoading, error }: Props) {
   const { quote, profile, ratings, documents, portfolio } = data ?? {};
 
   const { asset, top10Holdings } = portfolio ?? {};
-  const { ongoingCharge, currency } = quote ?? {};
+  const { ongoingCharge } = quote ?? {};
 
   const hasEssentialData = data && !!Object.keys(quote).length && !!Object.keys(asset).length;
 
@@ -34,7 +34,7 @@ export function FundDisplay({ data, isLoading, error }: Props) {
       case 3:
         return <Documents documents={documents} />;
       case 2:
-        return <CostsCharges ongoingCharge={ongoingCharge} currency={currency} />;
+        return <CostsCharges ongoingCharge={ongoingCharge} />;
       case 1:
         return <FundHoldings top10Holdings={top10Holdings} />;
       case 0:
