@@ -1,10 +1,20 @@
 'use client';
 
-import { Paper, ToggleButton, ToggleButtonGroup, Typography } from '@mui/material';
+import {
+  Box,
+  FormControl,
+  FormLabel,
+  Paper,
+  ToggleButton,
+  ToggleButtonGroup,
+  Typography,
+} from '@mui/material';
 import { type MouseEvent, useId } from 'react';
 
 import { FUND_TYPES, GROWTH_FUND_OPTIONS } from '@/constants';
 import type { FundType } from '@/types';
+
+import styles from './styles.module.css';
 
 export type Props = {
   onChangeFundTypeAction: (_: MouseEvent<HTMLElement>, value: FundType | null) => void;
@@ -19,51 +29,68 @@ export function FundSelector({
   onChangeFundTypeAction,
   onChangeGrowthFundAction,
 }: Props) {
+  const headingId = useId();
   const fundTypeId = useId();
   const growthTypeId = useId();
 
   return (
-    <Paper className="component-root">
-      {/* Fund Type Options */}
-      <Typography variant="h2" id={fundTypeId}>
-        Select Fund Type
-      </Typography>
+    <Paper
+      component="section"
+      aria-labelledby={headingId}
+      className={`component-root ${styles.root}`}
+    >
+      <Box className={styles.box}>
+        <Typography variant="h2" id={headingId}>
+          1. Tell us why you’re investing
+        </Typography>
 
-      <ToggleButtonGroup
-        color="primary"
-        value={fundType}
-        exclusive
-        onChange={onChangeFundTypeAction}
-        aria-labelledby={fundTypeId}
-      >
-        {FUND_TYPES.map((option) => (
-          <ToggleButton key={option} value={option}>
-            {option}
-          </ToggleButton>
-        ))}
-      </ToggleButtonGroup>
-
-      {/* Growth Funds Options */}
-      {fundType === 'Growth' && (
-        <>
-          <Typography variant="h2" id={growthTypeId}>
-            Select Growth Fund
-          </Typography>
+        <FormControl component="fieldset">
+          {/* Fund Type Options */}
+          <FormLabel component="legend" id={fundTypeId} className={styles.label}>
+            Select Fund Type
+          </FormLabel>
 
           <ToggleButtonGroup
             color="primary"
-            value={growthFundId}
+            value={fundType}
             exclusive
-            onChange={onChangeGrowthFundAction}
-            aria-labelledby={growthTypeId}
+            onChange={onChangeFundTypeAction}
+            aria-labelledby={fundTypeId}
           >
-            {GROWTH_FUND_OPTIONS.map(({ name, id }) => (
-              <ToggleButton key={name} value={id}>
-                {name}
+            {FUND_TYPES.map((option) => (
+              <ToggleButton key={option} value={option}>
+                {option}
               </ToggleButton>
             ))}
           </ToggleButtonGroup>
-        </>
+        </FormControl>
+      </Box>
+
+      {/* Growth Funds Options */}
+      {fundType === 'Growth' && (
+        <Box className={styles.box}>
+          <Typography variant="h3">2. Choose your fund</Typography>
+
+          <FormControl component="fieldset">
+            <FormLabel component="legend" id={growthTypeId} className={styles.label}>
+              Select Growth Fund
+            </FormLabel>
+
+            <ToggleButtonGroup
+              color="primary"
+              value={growthFundId}
+              exclusive
+              onChange={onChangeGrowthFundAction}
+              aria-labelledby={growthTypeId}
+            >
+              {GROWTH_FUND_OPTIONS.map(({ name, id }) => (
+                <ToggleButton key={name} value={id}>
+                  {name}
+                </ToggleButton>
+              ))}
+            </ToggleButtonGroup>
+          </FormControl>
+        </Box>
       )}
     </Paper>
   );

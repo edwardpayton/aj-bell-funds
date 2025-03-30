@@ -30,12 +30,15 @@ body {
 /* sm - 500px */
 @media (min-width: 31.25rem) {
   :root {
-    --padding: 3rem;
+    --padding: 1.5rem;
   }
 }
 
 /* md - 800px */
 @media (min-width: 50rem) {
+  :root {
+    --padding: 2rem 3rem;
+  }
 }
 
 /* lg - 1200px */

@@ -39,7 +39,7 @@ export function FundManager() {
         onChangeGrowthFundAction={handleChangeGrowthFundType}
       />
 
-      <FundDisplay isLoading={isLoading} error={error} data={data as FundData} />
+      {growthFundId && <FundDisplay isLoading={isLoading} error={error} data={data as FundData} />}
     </>
   );
 }

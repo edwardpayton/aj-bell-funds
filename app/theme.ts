@@ -16,6 +16,7 @@ const theme = createTheme({
   },
   typography: {
     fontFamily: 'var(--font-source-sans-3)',
+    fontWeightRegular: 300,
     h1: {
       fontSize: '4rem',
     },
@@ -39,7 +40,7 @@ const theme = createTheme({
 
 const responsiveTheme = responsiveFontSizes(theme, {
   breakpoints: ['sm', 'md', 'lg'],
-  factor: 2,
+  factor: 2.5,
   variants: ['h1', 'h2', 'h3', 'h4', 'h5', 'h6'],
 });
 
