@@ -1,22 +1,14 @@
 'use client';
 
+import Alert from '@mui/material/Alert';
 import Box from '@mui/material/Box';
 import CircularProgress from '@mui/material/CircularProgress';
 import { useQuery } from '@tanstack/react-query';
 
 import { ALL_FUND_IDS } from '@/constants';
-import { FundData, FundId } from '@/types';
+import { getFundData } from '@/queries';
 
-export type FundResponse = FundData | { error: unknown };
-
-export async function getFundData(id: FundId): Promise<FundResponse> {
-  try {
-    const response = await fetch(`/api/getData/${id}`);
-    return response.json();
-  } catch (error) {
-    return { error };
-  }
-}
+import { PortfolioAssetChart } from './PortfolioAssetChart';
 
 export function InvestmentData() {
   const fundId = ALL_FUND_IDS[0];
@@ -27,8 +19,6 @@ export function InvestmentData() {
     enabled: !!fundId,
   });
 
-  console.log({ data, error });
-
   if (isLoading) {
     return (
       <Box display="flex" justifyContent="center">
@@ -37,5 +27,19 @@ export function InvestmentData() {
     );
   }
 
-  return <p>Data loaded</p>;
+  if (error || !data || 'error' in data) {
+    return (
+      <Box>
+        <Alert severity="error">Error loading fund data: {error.message}</Alert>
+      </Box>
+    );
+  }
+
+  const { portfolio } = data;
+
+  return (
+    <>
+      <PortfolioAssetChart data={portfolio?.asset} />
+    </>
+  );
 }
