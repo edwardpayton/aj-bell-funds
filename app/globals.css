@@ -1,6 +1,8 @@
 :root {
-  --background: #8a8a8a;
-  --foreground: #171717;
+  --colors-white: #ffffff;
+  --colors-gray: #8a8a8a;
+  --text-color: #171717;
+  --padding: 1rem;
 }
 
 html,
@@ -10,8 +12,8 @@ body {
 }
 
 body {
-  color: var(--foreground);
-  background-color: var(--background);
+  color: var(--text-color);
+  background-color: var(--colors-gray);
   font-family: var(--font-source-sans-3);
 }
 
@@ -19,4 +21,23 @@ body {
   box-sizing: border-box;
   padding: 0;
   margin: 0;
+}
+
+.component-root {
+  padding: var(--padding);
+}
+
+/* sm - 500px */
+@media (min-width: 31.25rem) {
+  :root {
+    --padding: 3rem;
+  }
+}
+
+/* md - 800px */
+@media (min-width: 50rem) {
+}
+
+/* lg - 1200px */
+@media (min-width: 75rem) {
 }

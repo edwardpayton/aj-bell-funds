@@ -4,7 +4,7 @@ import { Paper, ToggleButton, ToggleButtonGroup, Typography } from '@mui/materia
 import { type MouseEvent, useId } from 'react';
 
 import { FUND_TYPES, GROWTH_FUND_OPTIONS } from '@/constants';
-import { type FundType } from '@/types';
+import type { FundType } from '@/types';
 
 export type Props = {
   onChangeFundTypeAction: (_: MouseEvent<HTMLElement>, value: FundType | null) => void;
@@ -23,32 +23,30 @@ export function FundSelector({
   const growthTypeId = useId();
 
   return (
-    <>
+    <Paper className="component-root">
       {/* Fund Type Options */}
-      <Paper sx={{ p: 3, mb: 3 }}>
-        <Typography variant="h6" gutterBottom id={fundTypeId}>
-          Select Fund Type
-        </Typography>
+      <Typography variant="h2" id={fundTypeId}>
+        Select Fund Type
+      </Typography>
 
-        <ToggleButtonGroup
-          color="primary"
-          value={fundType}
-          exclusive
-          onChange={onChangeFundTypeAction}
-          aria-labelledby={fundTypeId}
-        >
-          {FUND_TYPES.map((option) => (
-            <ToggleButton key={option} value={option}>
-              {option}
-            </ToggleButton>
-          ))}
-        </ToggleButtonGroup>
-      </Paper>
+      <ToggleButtonGroup
+        color="primary"
+        value={fundType}
+        exclusive
+        onChange={onChangeFundTypeAction}
+        aria-labelledby={fundTypeId}
+      >
+        {FUND_TYPES.map((option) => (
+          <ToggleButton key={option} value={option}>
+            {option}
+          </ToggleButton>
+        ))}
+      </ToggleButtonGroup>
 
       {/* Growth Funds Options */}
       {fundType === 'Growth' && (
-        <Paper sx={{ p: 3 }}>
-          <Typography variant="h6" gutterBottom id={growthTypeId}>
+        <>
+          <Typography variant="h2" id={growthTypeId}>
             Select Growth Fund
           </Typography>
 
@@ -65,8 +63,8 @@ export function FundSelector({
               </ToggleButton>
             ))}
           </ToggleButtonGroup>
-        </Paper>
+        </>
       )}
-    </>
+    </Paper>
   );
 }

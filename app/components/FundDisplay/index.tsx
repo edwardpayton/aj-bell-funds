@@ -3,7 +3,7 @@
 import { Alert, Box, CircularProgress, Paper, Rating, Typography } from '@mui/material';
 
 import { PortfolioAssetChart } from '@/components/PortfolioAssetChart';
-import { FundData } from '@/types';
+import type { FundData } from '@/types';
 
 export type Props = {
   data: FundData;
@@ -20,35 +20,27 @@ export function FundDisplay({ data, isLoading, error }: Props) {
     portfolio: { asset, top10Holdings } = {},
   } = data ?? {};
 
-  if (isLoading) {
-    return (
-      <Paper sx={{ p: 3, mt: 3 }}>
+  const hasEssentialData = !!name && !!asset && !!analystRating;
+
+  return (
+    <Paper className="component-root">
+      {isLoading && (
         <Box display="flex" justifyContent="center">
           <CircularProgress />
         </Box>
-      </Paper>
-    );
-  }
-
-  if (error) {
-    return (
-      <Paper sx={{ p: 3, mt: 3 }}>
-        <Alert severity="error">Error loading fund data: {error.message}</Alert>
-      </Paper>
-    );
-  }
-
-  return (
-    <Paper sx={{ p: 3, mt: 3 }}>
-      {name && (
-        <Typography variant="h3" gutterBottom>
-          {name}
-        </Typography>
       )}
 
-      {asset && <PortfolioAssetChart data={asset} />}
+      {error && <Alert severity="error">Error loading fund data: {error.message}</Alert>}
 
-      {analystRating && <Rating name="rating" defaultValue={analystRating} readOnly />}
+      {hasEssentialData && (
+        <>
+          <Typography variant="h3">{name}</Typography>
+
+          <PortfolioAssetChart data={asset} />
+
+          <Rating name="rating" defaultValue={analystRating} readOnly />
+        </>
+      )}
 
       <Box>{data && <Typography variant="body1">{JSON.stringify(data, null, 2)}</Typography>}</Box>
     </Paper>
