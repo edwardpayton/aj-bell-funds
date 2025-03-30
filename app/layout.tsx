@@ -18,7 +18,7 @@ export const metadata: Metadata = {
   description: 'Front-end Engineering: Practical assessment - Ed Payton, March 2025',
 };
 
-type Props = {
+export type Props = {
   children: ReactNode;
 };
 
