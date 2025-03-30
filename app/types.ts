@@ -28,7 +28,7 @@ export type FundData = {
   };
 };
 
-export type GrowthFundOption = {
-  name: string;
+export type ListOption = {
   id: FundId;
+  label: string;
 };

@@ -83,9 +83,9 @@ export function FundSelector({
               onChange={onChangeGrowthFundAction}
               aria-labelledby={growthTypeId}
             >
-              {GROWTH_FUND_OPTIONS.map(({ name, id }) => (
-                <ToggleButton key={name} value={id}>
-                  {name}
+              {GROWTH_FUND_OPTIONS.map(({ label, id }) => (
+                <ToggleButton key={label} value={id}>
+                  {label}
                 </ToggleButton>
               ))}
             </ToggleButtonGroup>

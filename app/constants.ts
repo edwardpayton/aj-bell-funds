@@ -1,4 +1,4 @@
-import type { GrowthFundOption } from '@/types';
+import type { ListOption } from '@/types';
 
 export const BASE_URL = 'https://cdn.core3-dev.ajbbuild.uk/interview/';
 
@@ -19,9 +19,28 @@ export const GROWTH_FUND_IDS = Object.values(FUNDS.Growth);
 
 export const ALL_FUND_IDS = [...GROWTH_FUND_IDS, FUNDS.Responsible.Default];
 
-export const GROWTH_FUND_OPTIONS: GrowthFundOption[] = Object.entries(FUNDS.Growth).map(
-  ([name, id]) => ({
-    name,
+export const GROWTH_FUND_OPTIONS: ListOption[] = Object.entries(FUNDS.Growth).map(
+  ([id, label]) => ({
     id,
+    label,
   }),
 );
+
+export const FUND_DISPLAY_TABS: ListOption[] = [
+  {
+    id: 'tab1',
+    label: 'Asset allocation and rating',
+  },
+  {
+    id: 'tab2',
+    label: 'Fund holdings',
+  },
+  {
+    id: 'tab3',
+    label: 'Costs & charges',
+  },
+  {
+    id: 'tab4',
+    label: 'Documents',
+  },
+];
