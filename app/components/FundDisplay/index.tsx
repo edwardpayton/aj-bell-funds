@@ -20,7 +20,10 @@ export type Props = {
 };
 
 export function FundDisplay({ data, isLoading, error }: Props) {
-  const [activeTab, setActiveTab] = useQueryState('tab-number', parseAsInteger.withDefault(0));
+  const [activeTab, setActiveTab] = useQueryState('tab-number', {
+    history: 'push',
+    parse: (value: string): number => parseAsInteger.withDefault(0).parseServerSide(value),
+  });
 
   const { quote, profile, ratings, documents, portfolio } = data ?? {};
 

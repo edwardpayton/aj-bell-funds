@@ -14,8 +14,11 @@ export function FundManager() {
   const [fundType, setFundType] = useQueryState<FundType>('fundType', {
     parse: (value): FundType => value as FundType,
   });
-  const [growthFundId, setGrowthFundId] = useQueryState('growthFundId');
-  const [, setTabNumber] = useQueryState('tab-number', parseAsInteger.withDefault(0));
+  const [growthFundId, setGrowthFundId] = useQueryState('growthFundId', { history: 'push' });
+  const [, setTabNumber] = useQueryState<number>('tab-number', {
+    history: 'push',
+    parse: (value: string): number => parseAsInteger.withDefault(0).parseServerSide(value),
+  });
 
   const [isValidFundId, setIsValidFundId] = useState(false);
 
